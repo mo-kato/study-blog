@@ -1,7 +1,7 @@
 ---
 title: "AstroをGitHub Pagesにデプロイする"
 createdAt: "2026-06-26 20:00"
-updatedAt: "2026-06-26 20:00"
+updatedAt: "2026-07-08 00:00"
 tags:
   - "Astro"
   - "Github Pages"
@@ -105,3 +105,29 @@ git config --global user.email "<sample>@users.noreply.github.com"
 Astro公式の手順に従うことで、GitHub Actionsの設定から`astro.config.mjs`の変更、GitHubの設定まで、つまずくことなくデプロイできました。
 
 次回は技術選定の背景をADRとしてまとめた話を書く予定です。
+
+## 追記(2026-07-08): デプロイが失敗した
+
+実際にpushしてデプロイを試したところ、GitHub Actionsのビルドが失敗しました。エラーログは以下の通りです。
+
+```text
+npm error code EBADENGINE
+npm error engine Unsupported engine
+npm error engine Not compatible with your version of node/npm: study-blog@0.0.1
+npm error notsup Not compatible with your version of node/npm: study-blog@0.0.1
+npm error notsup Required: {"node":">=26.4.0","npm":">=11.0.0"}
+npm error notsup Actual:   {"node":"v24.18.0","npm":"11.16.0"}
+```
+
+原因を調べたところ、`package.json`の`engines.node`を`>=26.4.0`に変更していたことが分かりました。Temporal APIを使いたくて、`mise.toml`でもNode 26系を指定していたのですが、`withastro/action`が内部でセットアップするNodeのバージョンはデフォルトで`24`だったため、バージョン不一致でインストールに失敗していました。
+
+`withastro/action`には`node-version`という入力があり、これを指定するとセットアップされるNodeのバージョンを変更できます。`deploy.yml`に以下のように追記しました。
+
+```yaml
+      - name: Install, build, and upload your site
+        uses: withastro/action@v6
+        with:
+          node-version: "26"
+```
+
+この設定を追加したところ、デプロイが通るようになりました。CI側のNodeバージョン指定も忘れない！
