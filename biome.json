@@ -6,7 +6,6 @@
     "useIgnoreFile": true
   },
   "files": {
-    "includes": ["src/**"],
     "ignoreUnknown": false
   },
   "formatter": {
@@ -25,6 +24,20 @@
       "quoteStyle": "double"
     }
   },
+  "html": {
+    "experimentalFullSupportEnabled": true
+  },
+  "overrides": [
+    {
+      "includes": ["**/*.astro", "**/*.svelte"],
+      "formatter": {
+        "enabled": true
+      },
+      "linter": {
+        "enabled": true
+      }
+    }
+  ],
   "assist": {
     "enabled": true,
     "actions": {
