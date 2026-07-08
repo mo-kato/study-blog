@@ -6,5 +6,6 @@ import { defineConfig } from "astro/config";
 // https://astro.build/config
 export default defineConfig({
   integrations: [svelte()],
-  site: "https://mo-kato.github.io/study-blog",
+  site: "https://mo-kato.github.io",
+  base: "/study-blog",
 });
