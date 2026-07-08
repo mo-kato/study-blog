@@ -14,7 +14,7 @@ const posts = await getCollection("posts");
         <span>
             {post.data.createdAt}
         </span>
-        <a href={`${import.meta.env.BASE_URL}/posts/${post.id}/`}>
+        <a href={`/posts/${post.id}`}>
             {post.data.title}
         </a>
       </li>
