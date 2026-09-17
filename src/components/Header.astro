@@ -42,9 +42,9 @@ const icon = css({
 
 <header class={cotainer}>
   <div class={header}>
-    <a class={title} href={`${import.meta.env.BASE_URL}/`}>blog.naska.dev</a>
+    <a class={title} href={import.meta.env.BASE_URL}>blog.naska.dev</a>
     <nav class={navi}>
-      <a href={`${import.meta.env.BASE_URL}/tags/`}> tags </a>
+      <a href={`${import.meta.env.BASE_URL}tags/`}> tags </a>
       <ThemeToggle client:only="svelte" />
       <a
         class={icon}

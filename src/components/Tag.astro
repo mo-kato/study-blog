@@ -11,6 +11,6 @@ const { tag } = Astro.props;
 const tags = tagStyle();
 ---
 
-<a class={tags.root} href={`${import.meta.env.BASE_URL}/tags/${tag}/`}>
+<a class={tags.root} href={`${import.meta.env.BASE_URL}tags/${tag}/`}>
   <span class={tags.label}>{tag}</span>
 </a>
