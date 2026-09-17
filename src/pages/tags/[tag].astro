@@ -1,0 +1,33 @@
+---
+import { getCollection } from "astro:content";
+import PostList from "@components/PostList.astro";
+import CommonLayout from "@layouts/CommonLayout.astro";
+import { css } from "../../../styled-system/css";
+
+export async function getStaticPaths() {
+  const posts = await getCollection("posts");
+  const tags = [...new Set(posts.flatMap((post) => post.data.tags))];
+  return tags.map((tag) => ({
+    params: { tag },
+    props: {
+      posts: posts
+        .filter((post) => post.data.tags.includes(tag))
+        .sort((a, b) => (a.data.createdAt < b.data.createdAt ? 1 : -1)),
+    },
+  }));
+}
+
+const { tag } = Astro.params;
+const { posts } = Astro.props;
+
+const title = css({
+  pb: 6,
+  fontSize: "2xl",
+  fontWeight: "bold",
+});
+---
+
+<CommonLayout pageTitle={`tag:${tag}`}>
+  <h1 class={title}>tag:&nbsp;{tag}</h1>
+  <PostList {posts} />
+</CommonLayout>

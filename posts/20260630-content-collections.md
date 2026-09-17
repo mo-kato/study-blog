@@ -1,21 +1,18 @@
 ---
-title: "第五回: コンテンツコレクションで記事ページを作る"
+title: "コンテンツコレクションで記事ページを作る"
 createdAt: "2026-06-30 12:00"
 updatedAt: "2026-06-30 12:00"
 tags:
-  - "Astro"
-  - "コンテンツコレクション"
-  - "TypeScript"
-  - "Temporal"
-  - "フロントエンド"
-category: "tech"
+  - "astro"
+  - "content-collections"
+  - "typescript"
+  - "temporal"
+  - "frontend"
 ---
-
-# 第五回: コンテンツコレクションで記事ページを作る
 
 ## はじめに
 
-前回まででAstroプロジェクトのセットアップ、GitHub Pagesへのデプロイ、ADR、Biomeの導入まで終わりました。今回はいよいよ記事ページを作っていきます。
+[前回](../20260629-astro-basics/)まででAstroプロジェクトのセットアップ、GitHub Pagesへのデプロイまで終わりました。今回はいよいよ記事ページを作っていきます。
 
 Astroには**コンテンツコレクション**という仕組みがあって、ブログ記事のようなコンテンツを型安全に管理・取得できます。
 
@@ -61,7 +58,6 @@ const posts = defineCollection({
     createdAt: jstTimestamp,
     updatedAt: jstTimestamp,
     tags: z.array(z.string()),
-    category: z.string(),
   }),
 });
 
@@ -140,4 +136,4 @@ Astro.params.slug
 
 Temporalは使えませんでしたが、文字列として保持しておいて表示時に変換するというワークアラウンドで、一応Temporalの恩恵は受けられます。そのうちTemporalオブジェクトがstructuredCloneに対応されると嬉しいですね。
 
-次回はレイアウトコンポーネントを作ります。現状だと`<head>`がないので文字化けするので……。
+次回はレイアウトコンポーネントを作ります。現状だと`<head>`がないために文字化けするので……。

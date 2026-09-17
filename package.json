@@ -7,6 +7,7 @@
     "npm": ">=11.0.0"
   },
   "scripts": {
+    "prepare": "panda codegen",
     "dev": "astro dev",
     "build": "astro build",
     "preview": "astro preview",
@@ -22,6 +23,7 @@
     "typescript": "^6.0.3"
   },
   "devDependencies": {
-    "@biomejs/biome": "2.5.1"
+    "@biomejs/biome": "2.5.1",
+    "@pandacss/dev": "^1.11.4"
   }
 }

@@ -1,19 +1,16 @@
 ---
-title: "第六回: レイアウトコンポーネントを作る"
+title: "レイアウトコンポーネントを作る"
 createdAt: "2026-07-06 13:00"
 updatedAt: "2026-07-06 13:00"
 tags:
-  - "Astro"
-  - "TypeScript"
-  - "フロントエンド"
-category: "tech"
+  - "astro"
+  - "typescript"
+  - "frontend"
 ---
-
-# 第六回: レイアウトコンポーネントを作る
 
 ## はじめに
 
-前回はコンテンツコレクションを使って記事ページを作りました。ただ、あの状態だと`<head>`がなく、文字コードの指定もされていないので日本語が文字化けしてしまいます。今回はこれを解消するために、レイアウトコンポーネントを作っていきます。
+[前回](../20260630-content-collections/)はコンテンツコレクションを使って記事ページを作りました。ただ、あの状態だと`<head>`がなく、文字コードの指定もされていないので日本語が文字化けしてしまいます。今回はこれを解消するために、レイアウトコンポーネントを作っていきます。
 
 ## Astroのレイアウトはただのコンポーネント
 
@@ -87,7 +84,7 @@ const { frontmatter } = Astro.props;
 </RootLayout>
 ```
 
-`frontmatter`の型には、前回定義したコンテンツコレクションのスキーマから`CollectionEntry<"posts">["data"]`で型を持ってきています。AIに相談すると`InferEntrySchema<"posts">`を使えばいいと提案されますが、`InferEntrySchema`は公式ドキュメントに載っていませんし、`content.d.ts`を見ても`export`がついていない型でした。使うのは少し気持ち悪かったので、公式ドキュメントに載っている`CollectionEntry`の方を採用しています。
+`frontmatter`の型には、[前回](../20260630-content-collections/)定義したコンテンツコレクションのスキーマから`CollectionEntry<"posts">["data"]`で型を持ってきています。AIに相談すると`InferEntrySchema<"posts">`を使えばいいと提案されますが、`InferEntrySchema`は公式ドキュメントに載っていませんし、`content.d.ts`を見ても`export`がついていない型でした。使うのは少し気持ち悪かったので、公式ドキュメントに載っている`CollectionEntry`の方を採用しています。
 
 このPostLayoutは、RootLayoutを内部でimportして`pageTitle`を渡しつつ、自分自身の`<slot />`で受け取った本文をRootLayoutの`<slot />`にそのまま流し込む、という構成です。呼び出す側の`src/pages/posts/[...slug].astro`ではこう使います。
 

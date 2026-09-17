@@ -1,0 +1,67 @@
+import { defineTokens } from "@pandacss/dev";
+
+export default defineTokens({
+  fonts: {
+    sans: { value: '"Noto Sans JP", sans-serif' },
+    mono: { value: '"JetBrains Mono", monospace' },
+    title: { value: '"Righteous", sans-serif' },
+  },
+  colors: {
+    primary: {
+      "950": { value: "#060428" },
+      "900": { value: "#181a3d" },
+      "800": { value: "#3b3e5e" },
+      "700": { value: "#5a5d79" },
+      "600": { value: "#777991" },
+      "500": { value: "#9293a7" },
+      "400": { value: "#acacbc" },
+      "300": { value: "#c4c5d0" },
+      "200": { value: "#dcdce3" },
+      "100": { value: "#f3f3f6" },
+      "50": { value: "#fcfcfe" },
+    },
+
+    lime: {
+      "950": { value: "#19290a" },
+      "900": { value: "#344c1b" },
+      "800": { value: "#3c591b" },
+      "700": { value: "#49701b" },
+      "600": { value: "#5f921e" },
+      "500": { value: "#82c12d" },
+      "400": { value: "#9ad249" },
+      "300": { value: "#b6e274" },
+      "200": { value: "#d4efa7" },
+      "100": { value: "#e9f6d1" },
+      "50": { value: "#f5fbea" },
+    },
+    cyan: {
+      "50": { value: "#f0f9ff" },
+      "100": { value: "#dff3ff" },
+      "200": { value: "#b8e9ff" },
+      "300": { value: "#7ad8ff" },
+      "400": { value: "#34c4fc" },
+      "500": { value: "#09acec" },
+      "600": { value: "#008ccb" },
+      "700": { value: "#006fa5" },
+      "800": { value: "#045e88" },
+      "900": { value: "#0a4d70" },
+      "950": { value: "#07314a" },
+    },
+    marineLime: {
+      "950": { value: "#060428" },
+      "900": { value: "#17202e" },
+      "800": { value: "#2a3539" },
+      "700": { value: "#394844" },
+      "600": { value: "#455b4a" },
+      "500": { value: "#4f6e4c" },
+      "400": { value: "#5a7f4c" },
+      "300": { value: "#649048" },
+      "200": { value: "#6ea043" },
+      "100": { value: "#77b03a" },
+      "50": { value: "#82c12d" },
+    },
+  },
+  borders: {
+    hairline: { value: "1px solid transparent" },
+  },
+});

@@ -1,0 +1,16 @@
+---
+import { css } from "../../styled-system/css";
+import { layoutInner } from "../../styled-system/patterns";
+
+const footer = layoutInner({
+  h: 20,
+  display: "flex",
+  alignItems: "center",
+  justifyContent: "center",
+  fontSize: "sm",
+});
+---
+
+<footer class={footer}>
+  ©&nbsp;{Temporal.Now.plainDateISO().year.toString()}&nbsp;naska.dev
+</footer>

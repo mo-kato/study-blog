@@ -3,13 +3,10 @@ title: "Astro + Svelteで個人ブログを作り始めた"
 createdAt: "2026-06-25 20:00"
 updatedAt: "2026-06-25 20:00"
 tags:
-  - "Astro"
-  - "Svelte"
-  - "フロントエンド"
-category: "tech"
+  - "astro"
+  - "svelte"
+  - "frontend"
 ---
-
-# Astro + Svelteで個人ブログを作り始めた
 
 ## はじめに
 

@@ -3,6 +3,7 @@
   "include": [".astro/types.d.ts", "**/*"],
   "exclude": ["dist", "node_modules", "public"],
   "compilerOptions": {
+    "skipLibCheck": true,
     "verbatimModuleSyntax": true,
     "paths": {
       "@components/*": ["./src/components/*"],

@@ -1,15 +1,12 @@
 ---
-title: "第4.5回: .astroファイルの基本とサーバーアイランド"
+title: ".astroファイルの基本とサーバーアイランド"
 createdAt: "2026-06-29 12:00"
 updatedAt: "2026-06-29 12:00"
 tags:
-  - "Astro"
-  - "サーバーアイランド"
-  - "フロントエンド"
-category: "tech"
+  - "astro"
+  - "server-islands"
+  - "frontend"
 ---
-
-# 第4.5回: .astroファイルの基本とサーバーアイランド
 
 ## はじめに
 
@@ -32,7 +29,7 @@ Astroはファイルベースルーティングを採用しています。`src/p
 
 `.astro`ファイルは、フロントマター（`---`で囲まれた部分）にJavaScriptを書けます。書き方はJSXに近い感じです。
 
-```html
+```astro
 ---
 const content = "Hoge";
 const show = true;

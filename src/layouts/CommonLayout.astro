@@ -1,0 +1,20 @@
+---
+import { layoutInner } from "../../styled-system/patterns";
+import RootLayout from "./RootLayout.astro";
+
+interface Props {
+  pageTitle: string;
+}
+const { pageTitle } = Astro.props;
+
+const container = layoutInner({
+  pt: 6,
+  pb: 8,
+});
+---
+
+<RootLayout pageTitle={pageTitle}>
+  <main class={container}>
+    <slot />
+  </main>
+</RootLayout>

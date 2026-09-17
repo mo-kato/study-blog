@@ -3,17 +3,14 @@ title: "AstroをGitHub Pagesにデプロイする"
 createdAt: "2026-06-26 20:00"
 updatedAt: "2026-07-08 00:00"
 tags:
-  - "Astro"
-  - "Github Pages"
-  - "Github Actions"
-category: "tech"
+  - "astro"
+  - "github-pages"
+  - "github-actions"
 ---
-
-# AstroをGitHub Pagesにデプロイする
 
 ## はじめに
 
-前回、AstroとSvelteでプロジェクトを作りました。今回はそのプロジェクトをGitHub Pagesで公開するまでの手順を記録します。
+[前回](../20260625-astro-svelte-start/)、AstroとSvelteでプロジェクトを作りました。今回はそのプロジェクトをGitHub Pagesで公開するまでの手順を記録します。
 
 ## なぜGitHub Pagesを選んだか
 

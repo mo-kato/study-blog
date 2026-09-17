@@ -11,7 +11,7 @@ const jstTimestamp = z
   .transform((str) =>
     Temporal.PlainDateTime.from(str.replace(" ", "T"))
       .toZonedDateTime("Asia/Tokyo")
-      .toString()
+      .toString(),
   );
 
 // 各コレクションの loader と schema を定義する
@@ -22,7 +22,6 @@ const posts = defineCollection({
     createdAt: jstTimestamp,
     updatedAt: jstTimestamp,
     tags: z.array(z.string()),
-    category: z.string(),
   }),
 });
 // コレクションを登録するため、collections オブジェクトをエクスポートする

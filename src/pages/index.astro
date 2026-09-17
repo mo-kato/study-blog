@@ -1,23 +1,13 @@
 ---
 import { getCollection } from "astro:content";
-import RootLayout from "@layouts/RootLayout.astro";
+import PostList from "@components/PostList.astro";
+import CommonLayout from "@layouts/CommonLayout.astro";
 
-const pageTitle = "トップページ";
+const pageTitle = "scribbles";
 
 const posts = await getCollection("posts");
 ---
 
-<RootLayout pageTitle={pageTitle}>
-  <ul>
-    {posts.map((post) => (
-      <li>
-        <span>
-            {post.data.createdAt}
-        </span>
-        <a href={`${import.meta.env.BASE_URL}/posts/${post.id}/`}>
-            {post.data.title}
-        </a>
-      </li>
-  ))}
-  </ul>
-</RootLayout>
+<CommonLayout pageTitle={pageTitle}>
+  <PostList {posts} />
+</CommonLayout>

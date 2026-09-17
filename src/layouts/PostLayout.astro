@@ -1,13 +1,167 @@
 ---
 import type { CollectionEntry } from "astro:content";
+import Tag from "@components/Tag.astro";
 import RootLayout from "@layouts/RootLayout.astro";
+import { css } from "../../styled-system/css";
+import { layoutInner, tagList } from "../../styled-system/patterns";
 
 interface Props {
   frontmatter: CollectionEntry<"posts">["data"];
 }
 const { frontmatter } = Astro.props;
+
+const main = layoutInner();
+
+const time = css({
+  textStyle: "time",
+});
+
+const tags = tagList({
+  mt: 5,
+});
+
+// Markdown 本文のレイアウト（構造のみ・色は一切指定しない）
+// 色/背景/ボーダー色は継承させているので、自分で自由に設定できる。
+const markdownBody = css({
+  pt: 10,
+  pb: 16,
+  lineHeight: "loose",
+  wordBreak: "auto-phrase",
+  "& > :first-child": { m: "0" },
+  "& > :last-child": { m: "0" },
+
+  // 見出し
+  "& h1": {
+    fontSize: "3xl",
+    fontWeight: "bold",
+    lineHeight: "1.3",
+    mt: "8",
+    mb: "4",
+  },
+  "& h2": {
+    fontSize: "2xl",
+    fontWeight: "bold",
+    lineHeight: "1.3",
+    mt: "14",
+    mb: "7",
+    _before: {
+      content: '"##"',
+      mr: 1.5,
+      color: "marineLime.300",
+      _light: {
+        color: "cyan.300",
+      },
+    },
+  },
+  "& h3": {
+    fontSize: "xl",
+    fontWeight: "bold",
+    lineHeight: "1.4",
+    mt: "7",
+    mb: "3",
+  },
+  "& h4": { fontSize: "lg", fontWeight: "bold", mt: "6", mb: "2" },
+  "& h5": { fontSize: "md", fontWeight: "bold", mt: "4", mb: "2" },
+  "& h6": { fontSize: "sm", fontWeight: "bold", mt: "4", mb: "2" },
+
+  // 段落・区切り
+  "& :not(details) > p": { my: "4" },
+  "& details > p": { ml: "4" },
+  "& hr": { my: "8", hairlineTop: "border" },
+
+  // リンク
+  "& a": { textDecoration: "underline" },
+
+  // リスト
+  "& ul": { listStyleType: "disc", pl: "6", my: "4" },
+  "& ol": { listStyleType: "decimal", pl: "6", my: "4" },
+  "& li": { my: "1" },
+  "& li > ul, & li > ol": { my: "1" },
+
+  // 引用
+  "& blockquote": {
+    borderLeftWidth: "4px",
+    pl: "4",
+    my: "4",
+    borderColor: "marineLime.400",
+    _light: {
+      borderColor: "cyan.200",
+    },
+  },
+
+  // インラインコード
+  "& :not(pre) > code": {
+    fontFamily: "mono",
+    fontSize: "sm",
+    px: "1.5",
+    py: "0.5",
+    rounded: "sm",
+    bgColor: "marineLime.800",
+    color: "marineLime.50",
+    _light: {
+      bgColor: "cyan.100",
+      color: "cyan.800",
+    },
+  },
+
+  // コードブロック
+  "& pre": {
+    fontFamily: "mono",
+    fontSize: "sm",
+    lineHeight: "1.6",
+    p: "4",
+    my: "4",
+    rounded: "md",
+    overflowX: "auto",
+  },
+  "& pre code": {
+    fontFamily: "inherit",
+    fontSize: "inherit",
+  },
+  // Shiki デュアルテーマの切り替え：既定は dark（インライン色）。
+  // data-color-mode=light のときだけ light 側（--shiki-light）へ差し替える。
+  // インラインの dark 色を上書きするため !important が必要。
+  "& .astro-code": {
+    _light: {
+      color: "var(--shiki-light) !important",
+      backgroundColor: "var(--shiki-light-bg) !important",
+    },
+  },
+  "& .astro-code span": {
+    _light: {
+      color: "var(--shiki-light) !important",
+    },
+  },
+
+  // 画像
+  "& img": { maxWidth: "100%", height: "auto", rounded: "md" },
+
+  // テーブル
+  "& table": { width: "full", my: "4", borderCollapse: "collapse" },
+  "& th, & td": {
+    px: "3",
+    py: "2",
+    hairlineTop: "border",
+    textAlign: "left",
+  },
+  "& th": { fontWeight: "bold" },
+});
 ---
 
 <RootLayout pageTitle={frontmatter.title}>
-  <slot />
+  <main class={main}>
+    <article class={markdownBody}>
+      <h1>{frontmatter.title}</h1>
+      <time class={time}>
+        {Temporal.ZonedDateTime.from(frontmatter.createdAt).toPlainDate().toString()}
+      </time>
+      <div class={tags}>
+        {frontmatter.tags.map(tag => 
+          <Tag {tag}/>
+        )}
+      </div>
+      <hr>
+      <slot />
+    </article>
+  </main>
 </RootLayout>

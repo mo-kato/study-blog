@@ -1,0 +1,30 @@
+---
+import { getCollection } from "astro:content";
+import Tag from "@components/Tag.astro";
+import CommonLayout from "@layouts/CommonLayout.astro";
+import { css } from "../../../styled-system/css";
+import { tagList } from "../../../styled-system/patterns";
+
+const posts = await getCollection("posts");
+const tags = [...new Set(posts.flatMap((post) => post.data.tags))].sort();
+
+const title = css({
+  pb: 6,
+  fontSize: "2xl",
+  fontWeight: "bold",
+});
+
+const list = tagList({
+  rowGap: 4,
+  mb: 4,
+});
+---
+
+<CommonLayout pageTitle="all tags">
+  <h1 class={title}>all tags</h1>
+  <div class={list}>
+    {tags.map((tag) => (
+        <Tag {tag}/>
+      ))}
+  </div>
+</CommonLayout>
